@@ -97,7 +97,7 @@ void OnGetUserInfo(bool success, string error, string userInfo)
 ```
 
 ### Account deletion
-Users can delete their accounts by visiting https://playid.org/auth/delete This will result complete Play ID account deletion including all data related to other apps: linked accounts, saved games, leaderboards, achievements. You can make a button inside your app that will execute the following code:
+Users can delete their accounts by visiting https://playid.org/auth/delete. This will result complete Play ID account deletion including all data related to other apps: linked accounts, saved games, leaderboards, achievements. You can make a button inside your app that will execute the following code:
 ```csharp
 Application.OpenURL("https://playid.org/auth/delete");
 ```
