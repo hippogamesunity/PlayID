@@ -3,11 +3,11 @@
 
 ## Authentication
 **Play ID Authentication** is OAuth 2.0 web service for Unity. The main goal is to simplify user authentication to `1 call`, with no need to perform complicated setup for each platform. Just redirect users to the main sign-in screen where they can sign in with **Google**, **Apple**, **Facebook**, **X**, **Twitter**, **Telegram** and **Microsoft**. Your app will receive user data using **deep linking** (when possible) or with an additional web request.
-## Analytics, Cloud saves, Leaderboards, Achievements
+## Analytics, Cloud Saves, Leaderboards, Achievements
 Under development.
 
 ## Unity plugin
-**Play ID Plugin for Unity** is available on **Unity Asset Store**. It provides integration with our web service.
+**Play ID Plugin for Unity** is available on [Unity Asset Store](http://u3d.as/3j37). It provides integration with our web service.
  
 ## API reference
 
