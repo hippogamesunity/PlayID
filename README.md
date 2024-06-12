@@ -15,21 +15,54 @@ Under development.
 ```csharp
 var playIdAuth = new PlayIdAuth();
 ```
+
 ### Sign-in 
 ```csharp
 public void SignIn(Action<bool, string, UserInfo> callback, Platform platforms = Platform.Any, bool caching = true)
 ```
+
 #### Arguments
 - `callback` returns `success`, `error` and `userInfo`.
-- `platforms` specifies available platforms on the sign-in screen. `Platform` enumeration has `[Flags]` attribute and can be treated as a bit field (that is, a set of flags).
+- `platforms` specifies available platforms on the sign-in screen. `Platform` enumeration has `[Flags]` attribute and can be treated as a bit field (that is, a set of flags). When the only platform is specified, the user is redirected directly to the platform sign-in page (platform selection is skipped).
 - `caching` specifies if a previous sign-in result should be returned (if exists), otherwise the user will be redirected to the sign-in screen.
-#### Examples
+
+#### Example
 ```csharp
 playIdAuth.SignIn(OnSignIn);
-PlayIdAuth.SignIn(OnSignIn, platforms: Platform.Google | Platform.Apple | Platform.Facebook, caching: false);
+playIdAuth.SignIn(OnSignIn, platforms: Platform.Google | Platform.Apple | Platform.Facebook, caching: false);
 
 private void OnSignIn(bool success, string error, UserInfo user)
 {
     Debug.Log(success ? user.Name : error);
 }
+```
+
+### Access token
+Play ID `access token` is returned as a part of `TokenResponse`. By default, `access token` is valid for 7200 seconds.
+```csharp
+var accessToken = playIdAuth.SavedAuth.TokenResponse.AccessToken;
+```
+
+### Refresh access token
+When Play ID `access token` is expired, you can request a new on.
+```csharp
+public void RefreshAccessToken(Action<bool, string, TokenResponse> callback)
+```
+
+#### Example
+```csharp
+playIdAuth.RefreshAccessToken(OnRefreshAccessToken);
+
+void OnRefreshAccessToken(bool success, string error, TokenResponse tokenResponse)
+{
+    Debug.Log(success ? tokenResponse.AccessToken : error);
+}
+```
+
+### Internal data
+In rare cases you may want to receive platform specific data (we call it `internal`). For example, user info JSON originally returned by Google, or Google access tokens or ID tokens (don't confuse it with Play ID tokens). You will need to use Play ID access token to make these calls (available as `PlayIdAuth.SavedAuth.TokenResponse.AccessToken`).
+```csharp
+public void RequestUserInfoForPlatform(string accessToken, Platform platform, Action<bool, string, string> callback)
+public void RequestAccessTokenForPlatform(string accessToken, Platform platform, Action<bool, string, string> callback)
+public void RequestIdTokenForPlatform(string accessToken, Platform platform, Action<bool, string, string> callback)
 ```
