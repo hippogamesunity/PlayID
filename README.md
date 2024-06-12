@@ -3,6 +3,17 @@
 
 ## Authentication
 **Play ID Authentication** is OAuth 2.0 web service for Unity. The main goal is to simplify user authentication to `1 call`, with no need to perform complicated setup for each platform. Just redirect users to the main sign-in screen where they can sign in with **Google**, **Apple**, **Facebook**, **X**, **Twitter**, **Telegram** and **Microsoft**. Your app will receive user data using **deep linking** (when possible) or with an additional web request.
+### User data disclosure
+| Data / Platform | Google | Apple | Facebook | X (Twitter) | Telegram | Microsoft | VK |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Name | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ |
+| Email | ⬤ | ⬤ | ⬤ | @ | @ | ⬤ | ⬤ |
+| Access token | ⬤ | ⬤ | ⬤ | ⬤ |  | ⬤ | ⬤ |
+| Refresh token | ⬤ | ⬤ | ⬤ |  |  | ⬤ |  |
+| ID Token (JWT) | ⬤ | ⬤ | ⬤ |  |  | ⬤ |  |
+
+@ = `username` is returned instead of `email`
+
 ## Analytics, Cloud Saves, Leaderboards, Achievements
 Under development.
 
