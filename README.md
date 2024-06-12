@@ -62,9 +62,9 @@ void OnRefreshAccessToken(bool success, string error, TokenResponse tokenRespons
 ### Internal data
 In rare cases you may want to receive platform specific data (we call it `internal`). For example, user info JSON originally returned by Google, or Google access tokens or ID tokens (don't confuse it with Play ID tokens). You will need to use Play ID access token to make these calls (available as `PlayIdAuth.SavedAuth.TokenResponse.AccessToken`).
 ```csharp
-public void RequestUserInfoForPlatform(string accessToken, Platform platform, Action<bool, string, string> callback)
-public void RequestAccessTokenForPlatform(string accessToken, Platform platform, Action<bool, string, string> callback)
-public void RequestIdTokenForPlatform(string accessToken, Platform platform, Action<bool, string, string> callback)
+public void RequestUserInfoForPlatform(Platform platform, Action<bool, string, string> callback)
+public void RequestAccessTokenForPlatform(Platform platform, Action<bool, string, string> callback)
+public void RequestIdTokenForPlatform(Platform platform, Action<bool, string, string> callback)
 ```
 
 ### Account deletion
