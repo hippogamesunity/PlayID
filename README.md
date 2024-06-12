@@ -60,11 +60,40 @@ void OnRefreshAccessToken(bool success, string error, TokenResponse tokenRespons
 ```
 
 ### Internal data
-In rare cases you may want to receive platform specific data (we call it `internal`). For example, user info JSON originally returned by Google, or Google access tokens or ID tokens (don't confuse it with Play ID tokens). You will need to use Play ID access token to make these calls (available as `PlayIdAuth.SavedAuth.TokenResponse.AccessToken`).
+In rare cases you may want to receive platform specific data (we call it `internal`). For example, user info JSON originally returned by Google, or Google access tokens or ID tokens (don't confuse it with Play ID tokens).
 ```csharp
 public void RequestUserInfoForPlatform(Platform platform, Action<bool, string, string> callback)
 public void RequestAccessTokenForPlatform(Platform platform, Action<bool, string, string> callback)
 public void RequestIdTokenForPlatform(Platform platform, Action<bool, string, string> callback)
+```
+Before these calls:
+- ensure that user is signed in with Play ID by checking `PlayIdAuth.SavedAuth != null`;
+- ensure that user is authorized on the selected platform with `PlayIdAuth.SavedAuth.UserInfo.Platforms.HasFlag(Platform.Google)`;
+- check if Play ID access token is expired `PlayIdAuth.SavedAuth.TokenResponse.Expired`;
+- if Play ID access token is expired, call `playIdAuth.RefreshAccessToken`;
+#### Example
+```csharp
+if (playIdAuth.SavedAuth == null)
+{
+    Debug.Log("Please sign in first.");
+}
+else if (!playIdAuth.SavedAuth.UserInfo.Platforms.HasFlag(Platform.Google))
+{
+    Debug.Log("User was not authorized by Google.");
+}
+else if (playIdAuth.SavedAuth.TokenResponse.Expired)
+{
+    Debug.Log("Access token expired.");
+}
+else
+{
+    playIdAuth.RequestUserInfoForPlatform(Platform.Google, OnGetGoogleUserInfo);
+}
+
+void OnGetGoogleUserInfo(bool success, string error, string userInfo)
+{
+    Debug.Log(success ? userInfo : error);
+}
 ```
 
 ### Account deletion
