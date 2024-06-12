@@ -87,10 +87,10 @@ else if (playIdAuth.SavedAuth.TokenResponse.Expired)
 }
 else
 {
-    playIdAuth.RequestUserInfoForPlatform(Platform.Google, OnGetGoogleUserInfo);
+    playIdAuth.RequestUserInfoForPlatform(Platform.Google, OnGetUserInfo);
 }
 
-void OnGetGoogleUserInfo(bool success, string error, string userInfo)
+void OnGetUserInfo(bool success, string error, string userInfo)
 {
     Debug.Log(success ? userInfo : error);
 }
