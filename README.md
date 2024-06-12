@@ -66,3 +66,13 @@ public void RequestUserInfoForPlatform(string accessToken, Platform platform, Ac
 public void RequestAccessTokenForPlatform(string accessToken, Platform platform, Action<bool, string, string> callback)
 public void RequestIdTokenForPlatform(string accessToken, Platform platform, Action<bool, string, string> callback)
 ```
+
+### Account deletion
+Users can delete their accounts by visiting https://playid.org/auth/delete This will result complete Play ID account deletion including all data related to other apps: linked accounts, saved games, leaderboards, achievements. You can make a button inside your app that will execute the following code:
+```csharp
+Application.OpenURL("https://playid.org/auth/delete");
+```
+
+### For users (players)
+- [Terms of use](https://github.com/hippogamesunity/PlayID/wiki/Terms-of-use)
+- [Privacy policy](https://github.com/hippogamesunity/PlayID/wiki/Privacy-policy)
