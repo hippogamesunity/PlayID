@@ -118,6 +118,27 @@ void OnGetUserInfo(bool success, string error, string userInfo)
 }
 ```
 
+### Linking accounts
+You can link multiple accounts to one user. For example, if the user is already signed in with Google, you may also want to link his Apple of Facebook account. To do this, you can navigate users to the sign-in screen. Platforms where the user is already signed in will be hidden. Optionally, you can specify which platforms will be available for linking.
+```csharp
+public void Link(Action<bool, string, UserInfo> callback, Platform platforms = Platform.Any)
+```
+#### Example
+```csharp
+playIdAuth.Link(OnLinkPlatform);            
+
+void OnLinkPlatform(bool success, string error, UserInfo user)
+{
+    Debug.Log(success ? $"{user.Platforms}" : error);
+}
+```
+
+### Uninking accounts
+You can unlink a platform account from a user. For example, if the user is already signed in with both Google and Apple, and you want to unlink his Apple account.
+```csharp
+public void Unlink(Action<bool, string, UserInfo> callback, Platform platform)
+```
+
 ### Account deletion
 Users can delete their accounts by visiting https://playid.org/auth/delete. This will result complete Play ID account deletion including all data related to other apps: linked accounts, saved games, leaderboards, achievements. You can make a button inside your app that will execute the following code:
 ```csharp
