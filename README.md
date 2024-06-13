@@ -72,11 +72,13 @@ void OnRefreshAccessToken(bool success, string error, TokenResponse tokenRespons
 ### Revoke access token
 When Play ID `access token` is no longer needed, you can revoke it.
 ```csharp
-public void SignOut(bool revokeAccessToken = false)
+public void SignOut(bool revokeAccessToken = false) // playId.SavedAuth will be deleted.
+public void RevokeAccessToken(string accessToken) // playId.SavedAuth will be kept.
 ```
 #### Example
 ```csharp
 playIdAuth.SignOut(revokeAccessToken: true);
+playIdAuth.RevokeAccessToken(playIdAuth.SavedAuth.TokenResponse.AccessToken);
 ```
 
 ### Internal data
@@ -87,9 +89,9 @@ public void RequestAccessTokenForPlatform(Platform platform, Action<bool, string
 public void RequestIdTokenForPlatform(Platform platform, Action<bool, string, string> callback)
 ```
 Before these calls:
-- ensure that user is signed in with Play ID by checking `PlayIdAuth.SavedAuth != null`;
-- ensure that user is authorized on the selected platform with `PlayIdAuth.SavedAuth.UserInfo.Platforms.HasFlag(Platform.Google)`;
-- check if Play ID access token is expired `PlayIdAuth.SavedAuth.TokenResponse.Expired`;
+- ensure that user is signed in with Play ID by checking `playIdAuth.SavedAuth != null`;
+- ensure that user is authorized on the selected platform with `playIdAuth.SavedAuth.UserInfo.Platforms.HasFlag(Platform.Google)`;
+- check if Play ID access token is expired `playIdAuth.SavedAuth.TokenResponse.Expired`;
 - if Play ID access token is expired, call `playIdAuth.RefreshAccessToken`;
 #### Example
 ```csharp
