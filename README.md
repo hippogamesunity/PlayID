@@ -59,16 +59,6 @@ When Play ID `access token` is expired, you can request a new on.
 ```csharp
 public void RefreshAccessToken(Action<bool, string, TokenResponse> callback)
 ```
-
-### Revoke access token
-When Play ID `access token` is no longer needed, you can revoke it.
-```csharp
-public void SignOut(bool revokeAccessToken = false)
-```
-```csharp
-playIdAuth.SignOut(revoke: true);
-```
-
 #### Example
 ```csharp
 playIdAuth.RefreshAccessToken(OnRefreshAccessToken);
@@ -77,6 +67,16 @@ void OnRefreshAccessToken(bool success, string error, TokenResponse tokenRespons
 {
     Debug.Log(success ? tokenResponse.AccessToken : error);
 }
+```
+
+### Revoke access token
+When Play ID `access token` is no longer needed, you can revoke it.
+```csharp
+public void SignOut(bool revokeAccessToken = false)
+```
+#### Example
+```csharp
+playIdAuth.SignOut(revoke: true);
 ```
 
 ### Internal data
