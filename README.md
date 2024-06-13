@@ -72,7 +72,7 @@ void OnRefreshAccessToken(bool success, string error, TokenResponse tokenRespons
 ### Revoke access token
 When Play ID `access token` is no longer needed, you can revoke it.
 ```csharp
-public void SignOut(bool revokeAccessToken = false) // playId.SavedAuth will be deleted.
+public void SignOut(bool revokeAccessToken) // playId.SavedAuth will be deleted.
 public void RevokeAccessToken(string accessToken) // playId.SavedAuth will be kept.
 ```
 #### Example
