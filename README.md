@@ -76,7 +76,7 @@ public void SignOut(bool revokeAccessToken = false)
 ```
 #### Example
 ```csharp
-playIdAuth.SignOut(revoke: true);
+playIdAuth.SignOut(revokeAccessToken: true);
 ```
 
 ### Internal data
