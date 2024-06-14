@@ -14,7 +14,14 @@
 
 @ = `username` is returned instead of `email`
 
-## Analytics, Cloud Saves, Leaderboards, Achievements
+## Cloud Saves
+**Play ID Cloud Saves** is cloud storage for saved games and other user data. The main goal is seamless user experience for cross platform apps:
+- switch between different devices: mobile phone, tablet and PC
+- restore app data when a device was broken / lost / stolen
+
+Data size limit is 4096 bytes (1 record per 1 user per 1 app). Not designed for storing user generated content.
+
+## Analytics, Leaderboards, Achievements
 Under development.
 
 ## Unity plugin
@@ -95,22 +102,8 @@ Before these calls:
 - if Play ID access token is expired, call `playIdAuth.RefreshAccessToken`;
 #### Example
 ```csharp
-if (playIdAuth.SavedAuth == null)
-{
-    Debug.Log("Please sign in first.");
-}
-else if (!playIdAuth.SavedAuth.UserInfo.Platforms.HasFlag(Platform.Google))
-{
-    Debug.Log("User was not authorized by Google.");
-}
-else if (playIdAuth.SavedAuth.TokenResponse.Expired)
-{
-    Debug.Log("Access token expired.");
-}
-else
-{
-    playIdAuth.RequestUserInfoForPlatform(Platform.Google, OnGetUserInfo);
-}
+// Ensure that the user is signed in with the selected platform and the access token is not expired.
+playIdAuth.RequestUserInfoForPlatform(Platform.Google, OnGetUserInfo);
 
 void OnGetUserInfo(bool success, string error, string userInfo)
 {
@@ -145,6 +138,36 @@ Users can delete their accounts by visiting https://playid.org/auth/delete. This
 Application.OpenURL("https://playid.org/auth/delete");
 ```
 
-### For users (players)
+### Cloud saves
+To make calls, you need to create an instance of `CloudSaves` class with a valid access token. Data size limit is 4096 bytes (1 record per 1 user per 1 app).
+```csharp
+public void Save(string data, Action<bool, string> callback)
+public void Save(byte[] data, Action<bool, string> callback)
+public void Load(Action<bool, string, byte[]> callback)
+public void LoadString(Action<bool, string, string> callback)
+```
+#### Examples
+```csharp
+// Ensure that the user is signed in and the access token is not expired.
+var accessToken = playIdAuth.SavedAuth.TokenResponse.AccessToken;
+var cloudSaves = new CloudSaves(accessToken);
+var data = new { progress = 10, timestamp = DateTime.UtcNow };
+var json = JsonConvert.SerializeObject(data);
+
+cloudSaves.Save(json, OnSave);
+cloudSaves.LoadString(OnLoad);
+
+void OnSave(bool success, string error)
+{
+    Debug.Log(success ? "Saved!" : error);
+}
+
+void OnLoad(bool success, string error, string data)
+{
+    Debug.Log(success ? data : error);
+}
+```
+
+## For users (players)
 - [Terms of use](https://github.com/hippogamesunity/PlayID/wiki/Terms-of-use)
 - [Privacy policy](https://github.com/hippogamesunity/PlayID/wiki/Privacy-policy)
