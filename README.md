@@ -1,5 +1,5 @@
 # Play ID
-**Play ID** is a new platform that empowers your apps with user authentication, analytics, cloud saves, leaderboards and achievements.
+**Play ID** is a new platform that empowers your apps with user Authentication, Analytics, Remote Config, Cloud Saves, Leaderboards and Achievements.
 
 ## Authentication
 **Play ID Authentication** is OAuth 2.0 web service for Unity. The main goal is to simplify user authentication to `1 call`, with no need to perform complicated setup for each platform. Just redirect users to the main sign-in screen where they can sign in with **Google**, **Apple**, **Facebook**, **X**, **Twitter**, **Telegram** and **Microsoft**. Your app will receive user data using **deep linking** (when possible) or with an additional web request.
@@ -21,7 +21,7 @@
 
 Data size limit is 4096 bytes (1 record per 1 user per 1 app). Not designed for storing user generated content.
 
-## Analytics, Leaderboards, Achievements
+## Analytics, Remote Config, Leaderboards, Achievements
 Under development.
 
 ## Unity plugin
@@ -138,8 +138,8 @@ Users can delete their accounts by visiting https://playid.org/auth/delete. This
 Application.OpenURL("https://playid.org/auth/delete");
 ```
 
-### Cloud saves
-To make calls, you need to create an instance of `CloudSaves` class with a valid access token. Data size limit is 4096 bytes (1 record per 1 user per 1 app).
+### Cloud Saves
+To use this API, you need to create an instance of `CloudSaves` class with a valid access token. Data size limit is 4096 bytes (1 record per 1 user per 1 app).
 ```csharp
 public void Save(string data, Action<bool, string> callback)
 public void Save(byte[] data, Action<bool, string> callback)
