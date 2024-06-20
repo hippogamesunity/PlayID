@@ -44,7 +44,7 @@ Under development.
 3. Come up with a unique `Redirect URI Scheme` that will be used to activate your app with **Deep Linking** (for example: `myapp`)
 4. Return to Unity and open `PlayId/AppSettings` scriptable object
    - Set `Secret Key` and `Client Id`
-   - Add `[REDIRECT_URI_SCHEME]://oauth2/playid` to `RedirectUriList` (for example: `myapp://oauth2/playid`)
+   - Add `[REDIRECT_URI_SCHEME]://oauth2/playid` to `RedirectUriWhitelist` (for example: `myapp://oauth2/playid`)
    - Set `Name`, `Icon` and `RemoteConfig` (optional)
 5. Open `PlayId/Resources/AuthSettings` scriptable object, set `Client Id` and `Redirect URI Scheme`
 6. Setup **Deep Linking**
