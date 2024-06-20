@@ -2,7 +2,7 @@
 **Play ID** is a new platform that empowers your apps with user Authentication, Remote Config, Cloud Saves, Analytics, Leaderboards and Achievements.
 
 ## Authentication
-**Play ID Authentication** is OAuth 2.0 web service for Unity. The main goal is to simplify user authentication to `1 call`, with no need to perform complicated setup for each platform. Just redirect users to the main sign-in screen where they can sign in with **Google**, **Apple**, **Facebook**, **X**, **Twitter**, **Telegram** and **Microsoft**. Your app will receive user data using **deep linking** (when possible) or with an additional web request.
+**Play ID Authentication** is OAuth 2.0 web service for Unity. The main goal is to simplify user authentication to `1 call`, with no need to perform complicated setup for each platform. Just redirect users to the main sign-in screen where they can sign in with **Google**, **Apple**, **Facebook**, **X**, **Twitter**, **Telegram** and **Microsoft**. Your app will receive user data using **Deep Linking** (when possible) or with an additional web request.
 ### User data disclosure
 | Data / Platform | Google | Apple | Facebook | X (Twitter) | Telegram | Microsoft | VK |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -34,7 +34,26 @@ Under development.
 
 ## Unity plugin
 **Play ID Plugin for Unity** is available on [Unity Asset Store](http://u3d.as/3j37). It provides integration with our web service.
- 
+
+## Setup steps
+1. Install the plugin using Unity Package Manager
+2. Create a new developer account and a new app
+   - Email to `hippogamesunity@gmail.com` with a subject `Play ID developer request` and a body `Please create a new Play ID developer account and a new app [APP_NAME]`
+   - Wait for a reply with `Secret Key` and `Client Id`
+   - Meanwhile, you can research the asset and use it with built-in settings
+3. Come up with a unique `Redirect URI Scheme` that will be used to activate your app with **Deep Linking** (for example: `myapp`)
+4. Return to Unity and open `PlayId/AppSettings` scriptable object
+   - Set `Secret Key` and `Client Id`
+   - Add `[REDIRECT_URI_SCHEME]://oauth2/playid` to `RedirectUriList` (for example: `myapp://oauth2/playid`)
+   - Set `Name`, `Icon` and `RemoteConfig` (optional)
+5. Open `PlayId/Resources/AuthSettings` scriptable object, set `Client Id` and `Redirect URI Scheme`
+6. Setup **Deep Linking**
+   - For **Android**: Add `<data android:scheme="[REDIRECT_URI_SCHEME]" />` (replace by yours) at the end of `<intent-filter>` if your AndroidManifest.xml|
+   - For **iOS and macOS**: navigate to `Player Settings > Other > Configuration` and add your `Redirect URI Scheme` to `Supported URL schemes`. In Xcode, make sure that the URL scheme is added ([Register your URL scheme](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app#Register-your-URL-scheme)).
+   - For **Universal Windows Platform**: navigate to `Player Settings > Publishing Settings` and set `Protocol` as your `Redirect URI Scheme`, then enable `InternetClient` in `Capabilities`.
+   - For **Windows**: refer to [Settings for Windows](https://github.com/hippogamesunity/PlayID/wiki/Settings-for-Windows) section
+8. Run `Examples` scene and test sign-in
+
 ## API reference
 
 ### Initialize
