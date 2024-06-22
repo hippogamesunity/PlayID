@@ -88,7 +88,7 @@ private void OnSignIn(bool success, string error, User user)
 ```
 
 ### Access token
-Play ID `access token` is returned as a part of `TokenResponse`. By default, `access token` is valid for 7200 seconds.
+Play ID `access token` is returned as a part of `TokenResponse`. By default, `access token` is valid for 7200 seconds. The access token is requred to make Play ID API calls (Bearer Authorization).
 ```csharp
 var accessToken = playId.Auth.SavedAuth.TokenResponse.AccessToken;
 ```
