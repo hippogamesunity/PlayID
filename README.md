@@ -94,7 +94,7 @@ var accessToken = playId.Auth.SavedAuth.TokenResponse.AccessToken;
 ```
 
 ### Refresh access token
-When Play ID `access token` is expired, you can request a new on.
+When Play ID `access token` is expired, you can refresh it with `refresh token`.
 ```csharp
 public void RefreshAccessToken(Action<bool, string, TokenResponse> callback)
 ```
