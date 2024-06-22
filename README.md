@@ -42,7 +42,7 @@ Under development.
    - Get `SecretKey` and `ClientId` from the output
    - If you're already a Play ID developer, your configuration will be displayed
    - If you need to register one more app, please email `hippogamesunity@gmail.com`
-3. Come up with a unique `Redirect URI Scheme` that will be used to activate your app with **Deep Linking** (for example: `myapp`)
+3. Come up with an unique `Redirect URI Scheme` that will be used to activate your app with **Deep Linking** (for example: `myapp`)
 4. Return to Unity and open `PlayId/AppSettings` scriptable object
    - Set `Secret Key` and `Client Id`
    - Add `[REDIRECT_URI_SCHEME]://oauth2/playid` to `RedirectUriWhitelist` (for example: `myapp://oauth2/playid`)
