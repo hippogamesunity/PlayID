@@ -47,6 +47,7 @@ Under development.
    - Set `Secret Key` and `Client Id`
    - Clear `RedirectUriWhitelist` and add `[REDIRECT_URI_SCHEME]://oauth2/playid` to `RedirectUriWhitelist` (for example: `myapp://oauth2/playid`)
    - Set `Name`, `Icon` and `RemoteConfig` (optional)
+   - Press `Save`
 5. Open `PlayId/Resources/AuthSettings` scriptable object, set `Client Id` and `Redirect URI Scheme`
 6. Setup **Deep Linking**
    - For **Android**: add `<data android:scheme="[REDIRECT_URI_SCHEME]" />` (replace by yours) at the end of `<intent-filter>` if your AndroidManifest.xml|
