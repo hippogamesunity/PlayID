@@ -50,7 +50,7 @@ Under development.
    - Press `Save`
 5. Open `PlayId/Resources/AuthSettings` scriptable object, set `Client Id` and `Redirect URI Scheme`
 6. Setup **Deep Linking**
-   - For **Android**: add `<data android:scheme="[REDIRECT_URI_SCHEME]" />` (for example: `myapp://oauth2/playid`) at the end of `<intent-filter>` if your AndroidManifest.xml|
+   - For **Android**: add `<data android:scheme="[REDIRECT_URI_SCHEME]" />` (for example: `<data android:scheme="myapp" />`) at the end of `<intent-filter>` if your AndroidManifest.xml|
    - For **iOS and macOS**: navigate to `Player Settings > Other > Configuration` and add your `Redirect URI Scheme` to `Supported URL schemes`. In Xcode, make sure that the URL scheme is added ([Register your URL scheme](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app#Register-your-URL-scheme)).
    - For **Universal Windows Platform**: navigate to `Player Settings > Publishing Settings` and set `Protocol` as your `Redirect URI Scheme`, then enable `InternetClient` in `Capabilities`.
    - For **Windows**: refer to [Settings for Windows](https://github.com/hippogamesunity/PlayID/wiki/Settings-for-Windows) section
