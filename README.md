@@ -37,9 +37,10 @@ Under development.
 1. Install the plugin using Unity Package Manager
 2. Create a new developer account and a new app
    - Visit [Register as Play ID developer](https://playid.org/auth/dev) and sign in
+   - When creating a new Play ID developer account, the FREE plan is activated for your app (please visit [Plans](https://github.com/hippogamesunity/PlayID/wiki/Plans) for more information)
    - Get `SecretKey` and `ClientId` from the output
    - If you're already a Play ID developer, your configuration will be displayed
-   - If you need to register one more app, please email `hippogamesunity@gmail.com`
+   - If you need to register one more app, please email your request to `hippogamesunity@gmail.com`
 3. Come up with an unique `Redirect URI Scheme` that will be used to activate your app with **Deep Linking** (for example: `myapp`)
 4. Return to Unity and open `PlayId/AppSettings` scriptable object
    - Set `Secret Key` and `Client Id`
