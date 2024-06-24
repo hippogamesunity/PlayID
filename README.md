@@ -57,7 +57,7 @@ Under development.
 ## API reference
 
 ### Initialize
-To start using Play ID, create an instance of `PlayIdServices`. The constructor will load `AuthSettings` from Resources.
+To start using Play ID, create an instance of `PlayIdServices`. The constructor will load `AuthSettings` from Resources. Alternatively, you can use `PlayIdServices.Instance` singleton.
 ```csharp
 var playIdServices = new PlayIdServices();
 ```
