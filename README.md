@@ -121,10 +121,9 @@ playId.Auth.RevokeAccessToken(playId.Auth.SavedAuth.TokenResponse.AccessToken);
 ```
 
 ### Internal data
-In rare cases you may want to receive platform specific data (we call it `internal`). For example, user info JSON originally returned by Google, or Google access tokens or ID tokens (don't confuse it with Play ID tokens).
+In rare cases you may want to receive platform specific data (we call it `internal`). For example, user info JSON originally returned by Google or ID token (don't confuse it with Play ID tokens).
 ```csharp
 public void RequestUserInfoForPlatform(Platform platform, Action<bool, string, string> callback)
-public void RequestAccessTokenForPlatform(Platform platform, Action<bool, string, string> callback)
 public void RequestIdTokenForPlatform(Platform platform, Action<bool, string, string> callback)
 ```
 Before these calls:
