@@ -8,8 +8,6 @@
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Name | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ |
 | Email | ⬤ | ⬤ | ⬤ | @ | @ | ⬤ | ⬤ |
-| Access token | ⬤ | ⬤ | ⬤ | ⬤ |  | ⬤ | ⬤ |
-| Refresh token | ⬤ | ⬤ | ⬤ |  |  | ⬤ |  |
 | ID Token (JWT) | ⬤ | ⬤ | ⬤ |  |  | ⬤ |  |
 
 @ = `username` is returned instead of `email`
