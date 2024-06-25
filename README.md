@@ -8,9 +8,12 @@
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Name | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ | ⬤ |
 | Email | ⬤ | ⬤ | ⬤ | @ | @ | ⬤ | ⬤ |
+| Access token | ◍ | ◍ | ◍ | ◍ |  | ◍ | ◍ |
+| Refresh token | ◍ | ◍ | ◍ |  |  | ◍ |  |
 | ID Token (JWT) | ⬤ | ⬤ | ⬤ |  |  | ⬤ |  |
 
-@ = `username` is returned instead of `email`
+@ - `username` is returned instead of `email`
+◍ - we don't expose access tokens at the moment (feel free to request and describe your use cases)
 
 ## Remote Config
 **Play ID Remote Config** provides your apps with remote configuration that can be requested on app start. Recommended format is JSON.
