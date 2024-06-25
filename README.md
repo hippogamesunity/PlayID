@@ -13,6 +13,7 @@
 | ID Token (JWT) | ⬤ | ⬤ | ⬤ |  |  | ⬤ |  |
 
 @ - `username` is returned instead of `email`
+
 ◍ - we don't expose access tokens at the moment (feel free to request and describe your use cases)
 
 ## Remote Config
