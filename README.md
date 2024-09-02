@@ -10,7 +10,7 @@
 | Email | ⬤ | ⬤ | ⬤ | @ | @ | ⬤ | ⬤ |
 | Access token | ◍ | ◍ | ◍ | ◍ |  | ◍ | ◍ |
 | Refresh token | ◍ | ◍ | ◍ |  |  | ◍ |  |
-| ID Token (JWT) | ⬤ | ⬤ | ⬤ |  |  | ⬤ |  |
+| ID token (JWT) | ⬤ | ⬤ | ⬤ |  |  | ⬤ |  |
 
 @ - `username` is returned instead of `email`
 
@@ -89,6 +89,9 @@ private void OnSignIn(bool success, string error, User user)
     Debug.Log(success ? user.Name : error);
 }
 ```
+
+### ID token validation
+`ID token` (JWT) is returned as a part for `TokenResponse`. Please refer to [ID token validation](https://github.com/hippogamesunity/PlayID/wiki/ID-token-validation) section.
 
 ### Access token
 Play ID `access token` is returned as a part of `TokenResponse`. By default, `access token` is valid for 7200 seconds. The access token is requred to make Play ID API calls (Bearer Authorization).
