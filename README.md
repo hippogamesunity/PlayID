@@ -1,5 +1,5 @@
 # Play ID
-**Play ID** is a new platform that empowers your apps with user Authentication, Remote Config, Cloud Saves, Analytics, Leaderboards and Achievements.
+**Play ID** is a new social platform that empowers your apps with user Authentication, Remote Config, Cloud Saves, Analytics, Leaderboards and Achievements.
 
 ## Authentication
 **Play ID Authentication** is OAuth 2.0 web service for Unity. The main goal is to simplify user authentication to `1 call`, with no need to perform complicated setup for each platform. Just redirect users to the main sign-in screen where they can sign in with **Google**, **Apple**, **Facebook**, **X**, **Twitter**, **Telegram** and **Microsoft**. Your app will receive user data using **Deep Linking** (when possible) or with an additional web request.
