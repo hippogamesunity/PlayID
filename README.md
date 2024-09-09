@@ -226,6 +226,10 @@ void OnLoadRemoteConfig(bool success, string error, string remoteConfig)
     Output.text = success ? remoteConfig : error;
 }
 ```
+
+## Integration with other services
+- [Integration with Unity Authentication Service](https://github.com/hippogamesunity/PlayID/wiki/Integration-with-Unity-Authentication-Service)
+
 ## For users (players)
 - [Terms of use](https://github.com/hippogamesunity/PlayID/wiki/Terms-of-use)
 - [Privacy policy](https://github.com/hippogamesunity/PlayID/wiki/Privacy-policy)
