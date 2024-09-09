@@ -127,11 +127,12 @@ playId.Auth.RevokeAccessToken(playId.Auth.SavedAuth.TokenResponse.AccessToken);
 ```
 
 ### Internal data
-In rare cases you may want to receive platform specific data (we call it `internal`). For example, user info JSON originally returned by Google or ID token (don't confuse it with Play ID tokens).
-```csharp
-public void RequestUserInfoForPlatform(Platform platform, Action<bool, string, string> callback)
-public void RequestIdTokenForPlatform(Platform platform, Action<bool, string, string> callback)
-```
+In rare cases you may want to receive platform specific data (we call it `internal`). For example, user info JSON originally returned by Google or ID token (don't confuse it with Play ID tokens). You can access such info with `Internals` service available for authorized users (`user.Internals`).
+| Method | Arguments | Description |
+| :--- | :--- | :--- |
+| RequestUserInfoForPlatform | Platform platform, Action<bool, string, string> callback | Returns original user info for the selected platform. It may contain additional information about the user. |
+| RequestIdTokenForPlatform | Platform platform, bool refresh, Action<bool, string, string> callback | Returns an original ID token (JWT) for the selected platform. For Google and Apple only: if ID token is expired and `refresh` is TRUE, it will be refreshed automatically. |
+
 Before these calls:
 - ensure that user is signed in with Play ID by checking `playId.Auth.SavedAuth != null`;
 - ensure that user is authorized on the selected platform with `play.IdAuth.SavedAuth.UserInfo.Platforms.HasFlag(Platform.Google)`;
@@ -145,6 +146,13 @@ user.Internals.RequestUserInfoForPlatform(Platform.Google, OnGetUserInfo);
 void OnGetUserInfo(bool success, string error, string userInfo)
 {
     Debug.Log(success ? userInfo : error);
+}
+
+user.Internals.RequestIdTokenForPlatform(Platform.Apple, OnGetIdToken);
+
+void OnGetIdToken(bool success, string error, string idToken)
+{
+    Debug.Log(success ? idToken : error);
 }
 ```
 
