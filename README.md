@@ -140,7 +140,7 @@ Before these calls:
 #### Example
 ```csharp
 // Ensure that the user is signed in with the selected platform and the access token is not expired.
-playId.Auth.RequestUserInfoForPlatform(Platform.Google, OnGetUserInfo);
+user.RequestUserInfoForPlatform(Platform.Google, OnGetUserInfo);
 
 void OnGetUserInfo(bool success, string error, string userInfo)
 {
