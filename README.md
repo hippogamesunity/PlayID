@@ -216,11 +216,11 @@ void OnLoad(bool success, string error, string data)
 ```
 
 ### Leaderboards
-To start using this API, you should create leaderboards. Just open your AppSettings (Scriptable Object), set `Leaderboards` (IDs) and press `Save`.
+To start using this API, you should create leaderboards. Just open your `AppSettings` (Scriptable Object), set `Leaderboards` (IDs) and press `Save`.
 To report scores, users should be authorized. `Leaderboards` instance is available as a part of `User` object and is accessible with `user.Leaderboards`.
 The are 2 ways to load scores:
-1. If the user is not authorized, you can call `Leaderboards.LoadScores` (static method)
-2. If the user is authorized, you can call `user.Leaderboards.LoadScores_`
+1. If the user is not authorized, you can call `Leaderboards.LoadScores` (static method).
+2. If the user is authorized, you can call `user.Leaderboards.LoadScores_`.
 ```csharp
 public void ReportScore(string leaderboardId, long score, Action<bool, string> callback)
 public void LoadScores_(string leaderboardId, int top, int period, List<int> friends, Action<bool, string, List<Score>> callback)
@@ -246,7 +246,7 @@ void OnLoadScores(bool success, string error, List<Score> scores)
 ```
 
 ### Remote Config
-To start using this API, you should create configuration. Just open your AppSettings (Scriptable Object), set `Remote Config` and press `Save`.
+To start using this API, you should create configuration. Just open your `AppSettings` (Scriptable Object), set `Remote Config` and press `Save`.
 `RemoteConfig` instance is available as a part of `PlayIdServices` instance.
 ```csharp
 public void Load(Action<bool, string, string> callback)
