@@ -237,7 +237,8 @@ void OnReport(bool success, string error)
 
 var scope = new List<int>(); // A list of users that should be guaranteed included to scores.
 
-Scripts.Services.Leaderboards.LoadScores("gold", 10, 90, scope, OnReportScore);
+Leaderboards.LoadScores("gold", 10, 90, scope, OnReportScore);
+user.Leaderboards.LoadScores_("gold", 10, 90, scope, OnReportScore);
 
 void OnLoadScores(bool success, string error, List<Score> scores)
 {
