@@ -32,7 +32,9 @@ Data size limit is 1024 bytes.
 Data size limit is 4096 bytes (1 record per 1 user per 1 app). Not designed for storing user generated content.
 
 ## Leaderboards
-**Play Leaderboards** provides your apps with online scores. Competition is a good way to increase retention.
+**Play ID Leaderboards** provides your apps with online scores.
+- challenge your friends
+- competition is a good way to increase retention
 
 ## Analytics, Achievements
 Under development.
