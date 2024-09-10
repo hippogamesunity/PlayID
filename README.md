@@ -190,13 +190,15 @@ Application.OpenURL("https://playid.org/auth/delete");
 
 ### Cloud Saves
 To use this API, the user should be signed in and have a valid access token. Data size limit is 4096 bytes (1 record per 1 user per 1 app).
-When the user performs `SignIn`, `CloudSaves` instance becomes available as a part of `User` object and is accessible with `user.CloudSaves`. Another option is create a new instance of `CloudSaves` and passing a valid access token to its' constructor (available as `playId.SavedAuth.TokenResponse.AccessToken`).
-```csharp
-public void Save(string data, Action<bool, string> callback)
-public void Save(byte[] data, Action<bool, string> callback)
-public void Load(Action<bool, string, byte[]> callback)
-public void LoadString(Action<bool, string, string> callback)
-```
+When the user performs `SignIn`, `CloudSaves` instance becomes available as a part of `User` object and is accessible with `user.CloudSaves`.
+Alternatively, you can create a new instance of `CloudSaves` and passing a valid access token to its' constructor (available as `playId.SavedAuth.TokenResponse.AccessToken`).
+
+| Method | Arguments | Description |
+| :--- | :--- | :--- |
+| Save | byte[] data, Action<bool, string> callback | Saves string `data` to cloud storage. |
+| Save | string data, Action<bool, string> callback | Saves byte[] `data` to cloud storage. |
+| Load | Action<bool, string, byte[]> callback | Loads byte[] `data` from cloud storage. |
+| Load | LoadString | Loads string `data` from cloud storage. |
 #### Examples
 ```csharp
 // Ensure that the user is signed in and the access token is not expired.
@@ -204,12 +206,13 @@ var data = new { progress = 10, timestamp = DateTime.UtcNow };
 var json = JsonConvert.SerializeObject(data);
 
 user.CloudSaves.Save(json, OnSave);
-user.CloudSaves.LoadString(OnLoad);
 
 void OnSave(bool success, string error)
 {
     Debug.Log(success ? "Saved!" : error);
 }
+
+user.CloudSaves.LoadString(OnLoad);
 
 void OnLoad(bool success, string error, string data)
 {
@@ -218,16 +221,18 @@ void OnLoad(bool success, string error, string data)
 ```
 
 ### Leaderboards
-To start using this API, you should create leaderboards. Just open your `AppSettings` (Scriptable Object), set `Leaderboards` (IDs) and press `Save`.
+To start using this API, you should create leaderboards. Just open your `AppSettings` (Scriptable Object), set `Leaderboards` (max 8 IDs) and press `Save`.
 To report scores, users should be authorized. `Leaderboards` instance is available as a part of `User` object and is accessible with `user.Leaderboards`.
 The are 2 ways to load scores:
 - if the user is not authorized, you can call `Leaderboards.LoadScores` (static method)
 - if the user is authorized, you can call `user.Leaderboards.LoadScores_`
-```csharp
-public void ReportScore(string leaderboardId, long score, Action<bool, string> callback)
-public void LoadScores_(string leaderboardId, int top, int period, List<int> friends, Action<bool, string, List<Score>> callback)
-public static void LoadScores(string leaderboardId, int top, int period, List<int> scope, Action<bool, string, List<Score>> callback)
-```
+  
+| Method | Arguments | Description |
+| :--- | :--- | :--- |
+| ReportScore | string leaderboardId, long score, Action<bool, string> callback | Reports leaderboard score. |
+| LoadScores_ | string leaderboardId, int top, int period, List<int> friends, Action<bool, string, List<Score>> callback | Returns `top` leaderboard scores for `period` days. You can force include `friends` even if they are not in `top`. |
+| LoadScores (static) | string leaderboardId, int top, int period, List<int> friends, Action<bool, string, List<Score>> callback | Returns `top` leaderboard scores for `period` days. `scope` is a list of users that should be guaranteed included to scores. Use this method if the user is not authorized. |
+
 #### Examples
 ```csharp
 user.Leaderboards.ReportScore("gold", Random.Range(0, 10000), OnReport);
@@ -251,9 +256,11 @@ void OnLoadScores(bool success, string error, List<Score> scores)
 ### Remote Config
 To start using this API, you should create configuration. Just open your `AppSettings` (Scriptable Object), set `Remote Config` and press `Save`.
 `RemoteConfig` instance is available as a part of `PlayIdServices` instance.
-```csharp
-public void Load(Action<bool, string, string> callback)
-```
+
+| Method | Arguments | Description |
+| :--- | :--- | :--- |
+| Load | Action<bool, string, string> callback | Loads remote configuration. |
+
 #### Examples
 ```csharp
 PlayIdServices.Instance.RemoteConfig.Load(OnLoadRemoteConfig);
