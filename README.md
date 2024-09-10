@@ -31,7 +31,10 @@ Data size limit is 1024 bytes.
 
 Data size limit is 4096 bytes (1 record per 1 user per 1 app). Not designed for storing user generated content.
 
-## Analytics, Leaderboards, Achievements
+## Leaderboards
+**Play Leaderboards** provides your apps with online scores. Competition is a good way to increase retention.
+
+## Analytics, Achievements
 Under development.
 
 ## Unity plugin
@@ -212,14 +215,45 @@ void OnLoad(bool success, string error, string data)
 }
 ```
 
+### Leaderboards
+To start using this API, you should create leaderboards. Just open your AppSettings (Scriptable Object), set `Leaderboards` (IDs) and press `Save`.
+To report scores, users should be authorized. `Leaderboards` instance is available as a part of `User` object and is accessible with `user.Leaderboards`.
+The are 2 ways to load scores:
+1. If the user is not authorized, you can call `Leaderboards.LoadScores` (static method)
+2. If the user is authorized, you can call `user.Leaderboards.LoadScores_`
+```csharp
+public void ReportScore(string leaderboardId, long score, Action<bool, string> callback)
+public void LoadScores_(string leaderboardId, int top, int period, List<int> friends, Action<bool, string, List<Score>> callback)
+public static void LoadScores(string leaderboardId, int top, int period, List<int> scope, Action<bool, string, List<Score>> callback)
+```
+#### Examples
+```csharp
+user.Leaderboards.ReportScore("gold", Random.Range(0, 10000), OnReport);
+
+void OnReport(bool success, string error)
+{
+    Output.text = success ? "Score reported!" : error;
+}
+
+var scope = new List<int>(); // A list of users that should be guaranteed included to scores.
+
+Scripts.Services.Leaderboards.LoadScores("gold", 10, 90, scope, OnReportScore);
+
+void OnLoadScores(bool success, string error, List<Score> scores)
+{
+    Output.text = success ? string.Join('\n', scores.Select(i => $"#{i.Position} - {i.UserName} - {i.Value}")) : error;
+}
+```
+
 ### Remote Config
-`RemoteConfig` instance is available as a part of `PlayIdServices` object.
+To start using this API, you should create configuration. Just open your AppSettings (Scriptable Object), set `Remote Config` and press `Save`.
+`RemoteConfig` instance is available as a part of `PlayIdServices` instance.
 ```csharp
 public void Load(Action<bool, string, string> callback)
 ```
 #### Examples
 ```csharp
-new PlayIdServices().RemoteConfig.Load(OnLoadRemoteConfig);
+PlayIdServices.Instance.RemoteConfig.Load(OnLoadRemoteConfig);
 
 void OnLoadRemoteConfig(bool success, string error, string remoteConfig)
 {
