@@ -4,3 +4,5 @@
 - [Services description](https://github.com/hippogamesunity/PlayID/wiki)
 - [Setup steps](https://github.com/hippogamesunity/PlayID/wiki/Setup-steps)
 - [API reference](https://github.com/hippogamesunity/PlayID/wiki/API-reference)
+- [Troubleshooting](https://github.com/hippogamesunity/PlayID/wiki/Troubleshooting)
+- [Privacy policy](https://github.com/hippogamesunity/PlayID/wiki/Privacy-policy)
